@@ -3,13 +3,6 @@ source ./provision.methods.sh
 
 echo "*** Starting provisioning process... ***"
 
-if [[ $1 == 'standalone' ]]
-then
-    IS_STANDALONE=1
-    CFG_PATH=$2
-    echo "*** Running in standalone mode using $CFG_PATH config path ***"
-fi
-
 if [ -n "${VERBOSE_PROVISION+1}" ] 
 then
     IS_VERBOSE=1
@@ -19,9 +12,6 @@ fi
 init_system
 echo_section "Installing System Packages"
 install_sys_packages
-
-echo_section "Installing Python Packages"
-install_py_packages
 
 echo_section "Cleaning Up"
 cleanup_system
