@@ -18,6 +18,8 @@ function install_sys_packages {
     apt_get_install nginx
     apt_get_install mysql-server
     apt_get_install ufw
+    apt_get_install openjdk-8-jdk
+    
 }
 
 function setup_firewall {
@@ -86,6 +88,22 @@ function config_system {
 
 function setup_backup_schedule() {
     echo "Not implemented yet"
+}
+
+
+function additional_packages() {
+    mkdir -p /srv/package
+    #download and install maven
+    cd /tmp
+    wget http://www.us.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+    cd /srv/package
+    tar xzvf /tmp/apache-maven-3.3.9-bin.tar.gz
+    
+    export PATH=$PATH:/srv/package/apache-maven-3.3.9/bin
+
+
+
+
 }
 
 function init_system {
